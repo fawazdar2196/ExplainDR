@@ -118,10 +118,9 @@ def main():
     tile_sheet(sanity_imgs, out / "sanity_check.jpg", per_row=3)
     info.iloc[picks[:4]].to_csv(out / "sanity_check.csv", index=False)
     corrs = np.array(corrs)
-    print("\n== Sanity check: heatmaps from the trained model against a model with its last block scrambled ==")
+    print("\n== Sanity check: trained model against the same model with its last block reset ==")
     print(f"photos compared: {len(corrs)} of {len(picks)} (the rest gave a blank map)")
     print(f"rank correlation: median {np.median(corrs):.3f}, middle half {np.percentile(corrs, 25):.3f} to {np.percentile(corrs, 75):.3f}")
-    print("near 0 means the maps depend on what the model learned; near 1 would mean they do not")
 
     # 3. faithfulness: hide the most highlighted 10% of the retina, or a random 10%, and watch the confidence
     pool = np.nonzero(target >= REFERABLE)[0]
@@ -169,7 +168,7 @@ def main():
     serious = info[(info["grade"] >= 3) & (info["pred"] < REFERABLE)].sort_values(["grade", "pred"], ascending=[False, True])
     if len(serious):
         pairs(serious, "examples_serious_errors")
-    print("\n== The serious underestimates, with what a clinician would see ==")
+    print("\n== Serious underestimates ==")
     print(serious[["name", "grade", "pred", "confidence", "p_referable", "sent_for_review", "heat_outside_retina"]].to_string(index=False)
           if len(serious) else "none")
 

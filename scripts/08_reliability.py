@@ -72,8 +72,8 @@ def main():
         "test_mean_confidence_after": round(float(test_cal.max(1).mean()), 4),
     }
     print(f"run: {run}  validation photos: {len(val_y)}  test photos: {len(y)}")
-    print("\n== 1. Is the model's confidence trustworthy? ==")
-    print(f"temperature fitted on validation: {t:.3f} ({'above 1, so the model was overconfident' if t > 1 else 'below 1, so the model was underconfident'})")
+    print("\n== 1. Calibration ==")
+    print(f"temperature fitted on validation: {t:.3f}")
     print(f"test accuracy {calib['test_accuracy']:.3f}  mean confidence before {calib['test_mean_confidence_before']:.3f}, after {calib['test_mean_confidence_after']:.3f}")
     print(f"calibration error (ECE), validation: before {calib['val_ece_before']:.3f}, after {calib['val_ece_after']:.3f}")
     lo_b, hi_b = calib["test_ece_before_ci"]
@@ -100,9 +100,8 @@ def main():
                          "serious underestimates caught": f"{(flag & serious).sum()} of {serious.sum()}"})
     review = pd.DataFrame(rows)
     review.to_csv(out / "review_table.csv", index=False)
-    print("\n== 2. Sending the least certain photos to a doctor (cut-offs set on validation, results on test) ==")
-    print(f"accuracy with no review: {correct.mean():.1%}. Flagging photos at random would catch errors in proportion, "
-          f"for example 20% flagged catches about 20% of errors.")
+    print("\n== 2. Review rule (cut-offs set on validation, results on test) ==")
+    print(f"accuracy with no review: {correct.mean():.1%}")
     print(review.to_string(index=False))
 
     grid = np.arange(0, 0.51, 0.01)
@@ -141,10 +140,9 @@ def main():
         rows.append(row)
     quality_table = pd.DataFrame(rows)
     quality_table.to_csv(out / "quality_table.csv", index=False)
-    print(f"\n== 3. Does image sharpness matter? (thirds of the test set, cut at sharpness {cuts[0]:.1f} and {cuts[1]:.1f}) ==")
+    print(f"\n== 3. Accuracy by image sharpness (thirds of the test set, cut at {cuts[0]:.1f} and {cuts[1]:.1f}) ==")
     print("share of each true grade graded correctly, within each third:")
     print(quality_table.to_string(index=False))
-    print("balanced accuracy is the average of the five grades' scores, so the different grade mix in each third does not distort it")
 
     cal = test_df[["name", "grade", "pred"]].copy()
     for k in range(5):

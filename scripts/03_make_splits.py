@@ -76,7 +76,7 @@ def main():
     print("== Copy clusters ==")
     print(f"threshold: {args.threshold}  clusters with copies: {len(multi)}  images in them: {int(multi.sum())}")
     print(f"training images removed as copies of test images: {int(leak.sum())}")
-    print("clusters crossing train, val and test: 0")
+    print(f"clusters crossing train, val and test: {int((spans > 1).sum())}")
 
     df["grade_name"] = df["grade"].map(lambda g: f"{g} {GRADES[g]}")
     counts = pd.crosstab(df["grade_name"], df["split"], margins=True, margins_name="total")
