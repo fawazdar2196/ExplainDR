@@ -1,0 +1,25 @@
+{
+  "photos": 2225,
+  "agree_with_step6": 2190,
+  "outside_retina_median": 0.0069,
+  "outside_retina_over_10pct": 16,
+  "sanity_spearman_median": -0.0428,
+  "sanity_n": 100,
+  "faithful_drop_top": [
+    0.2547,
+    0.2263,
+    0.2855
+  ],
+  "faithful_drop_random": [
+    0.0342,
+    0.0114,
+    0.0554
+  ],
+  "faithful_difference": [
+    0.2205,
+    0.188,
+    0.255
+  ],
+  "flip_top": 0.45,
+  "flip_random": 0.21
+}

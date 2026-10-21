@@ -1,0 +1,36 @@
+{
+  "chosen_run": "resnet50_512",
+  "reason": "highest validation QWK, and the gap to every other model holds up under the bootstrap",
+  "rule": "highest val QWK; if the gap could be chance, the simpler model",
+  "val_qwk": 0.9018,
+  "val_qwk_95ci": [
+    0.884,
+    0.918
+  ],
+  "candidates": [
+    {
+      "run": "resnet50_224",
+      "best epoch": 15,
+      "accuracy": 0.726,
+      "macro-F1": 0.632,
+      "QWK": 0.861,
+      "parameters (M)": 23.5
+    },
+    {
+      "run": "resnet50_512",
+      "best epoch": 10,
+      "accuracy": 0.786,
+      "macro-F1": 0.69,
+      "QWK": 0.902,
+      "parameters (M)": 23.5
+    },
+    {
+      "run": "retfound_224",
+      "best epoch": 15,
+      "accuracy": 0.762,
+      "macro-F1": 0.677,
+      "QWK": 0.863,
+      "parameters (M)": 303.3
+    }
+  ]
+}

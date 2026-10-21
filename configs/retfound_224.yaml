@@ -1,0 +1,41 @@
+run_name: retfound_224
+splits: outputs/03_splits/splits.csv
+image_dir: data/processed_768
+output_dir: outputs/05_train_v2
+
+# RETFound (Zhou et al., Nature 2023), colour fundus weights
+model: vit_large_patch16_224
+pretrained_weights: hf://YukunZhou/RETFound_mae_natureCFP/RETFound_mae_natureCFP.pth
+image_size: 224
+
+# optimiser settings from the RETFound fine-tuning recipe
+# lr = base lr 5e-3 x batch 16 / 256
+epochs: 20
+batch_size: 16
+lr: 0.0003125
+layer_decay: 0.65
+weight_decay: 0.05
+drop_path: 0.2
+# warm-up is a fifth of training, as in the RETFound recipe (10 of 50)
+warmup_epochs: 4
+grad_checkpointing: true
+
+# kept the same as the ResNet runs so the comparison is fair
+class_weights: inverse_frequency
+select_metric: qwk
+patience: null
+
+num_workers: 6
+amp: bf16
+seed: 42
+
+augment:
+  scale_min: 0.85
+  hflip: 0.5
+  rotation: 30
+  brightness: 0.2
+  contrast: 0.2
+  saturation: 0.1
+  hue: 0.02
+  blur_p: 0.3
+  blur_sigma_max: 2.0

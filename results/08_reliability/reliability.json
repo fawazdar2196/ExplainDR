@@ -1,0 +1,24 @@
+{
+  "calibration": {
+    "temperature": 0.948,
+    "val_ece_before": 0.028,
+    "val_ece_after": 0.0172,
+    "test_ece_before": 0.025,
+    "test_ece_before_ci": [
+      0.0194,
+      0.0445
+    ],
+    "test_ece_after": 0.0261,
+    "test_ece_after_ci": [
+      0.0171,
+      0.0436
+    ],
+    "test_accuracy": 0.7627,
+    "test_mean_confidence_before": 0.7605,
+    "test_mean_confidence_after": 0.7712
+  },
+  "sharpness_cuts": [
+    27.45,
+    48.36
+  ]
+}

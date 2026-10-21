@@ -1,0 +1,33 @@
+run_name: resnet50_512
+splits: outputs/03_splits/splits.csv
+image_dir: data/processed_768
+output_dir: outputs/05_train_v2
+
+model: resnet50
+pretrained: true
+image_size: 512
+
+epochs: 20
+batch_size: 16
+lr: 0.0001
+weight_decay: 0.0001
+warmup_epochs: 1
+class_weights: inverse_frequency
+select_metric: qwk
+# same budget for every model, best epoch picked on validation
+patience: null
+
+num_workers: 6
+amp: bf16
+seed: 42
+
+augment:
+  scale_min: 0.85
+  hflip: 0.5
+  rotation: 30
+  brightness: 0.2
+  contrast: 0.2
+  saturation: 0.1
+  hue: 0.02
+  blur_p: 0.3
+  blur_sigma_max: 2.0

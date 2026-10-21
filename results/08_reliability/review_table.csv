@@ -1,0 +1,9 @@
+certainty score,target share,test photos flagged,accuracy of the rest,errors caught,missed referrals caught,serious underestimates caught
+grade confidence,5%,5.4%,78.5%,75 of 528,25 of 192,3 of 13
+grade confidence,10%,10.1%,80.5%,138 of 528,48 of 192,4 of 13
+grade confidence,20%,19.6%,84.5%,251 of 528,88 of 192,7 of 13
+grade confidence,30%,29.5%,87.8%,337 of 528,123 of 192,8 of 13
+referral certainty,5%,4.7%,78.4%,69 of 528,57 of 192,3 of 13
+referral certainty,10%,10.1%,80.3%,134 of 528,95 of 192,7 of 13
+referral certainty,20%,19.4%,84.2%,244 of 528,151 of 192,12 of 13
+referral certainty,30%,29.6%,88.2%,343 of 528,175 of 192,12 of 13

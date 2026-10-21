@@ -1,0 +1,11 @@
+# made by the scripts, too large or not ours to share
+data/
+outputs/
+*.zip
+*.pt
+*.pth
+*.npy
+__pycache__/
+*.pyc
+.venv/
+project_listing.txt
