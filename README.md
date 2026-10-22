@@ -146,7 +146,7 @@ GPU kernels are not fully deterministic, so a rerun can differ slightly. Two run
 
 - Step 2 finds that 52 test photographs (2.3%) have a copy in training, and 33 of them are identical files. At a similarity of 0.80 or more, 98.1% of pairs share a grade, while between 0.60 and 0.80 only 52.8% do.
 - Step 3 removes 58 training copies, leaving 7,573 photographs for training and 1,262 for validation. The test set keeps its official 2,225 photographs.
-- Step 8 shows that temperature scaling did not help on test, with a calibration error of 0.025 before and 0.026 after, so it was not adopted.
+- Step 8 reports test calibration error of 0.025 before temperature scaling and 0.026 after. Temperature was fitted on validation (T = 0.948). The review rules in steps 8 and 9 use scaled probabilities, as do the confidence values displayed with the step 9 examples. The headline ECE of 0.025 describes unscaled probabilities; scaling does not change the predicted grades.
 - Step 9 gives a median rank correlation of minus 0.043 in the sanity check. Hiding the most highlighted 10% of the retina lowers confidence by 0.255, against 0.034 for a random 10%.
 
 ## Seeds
@@ -176,7 +176,7 @@ The results folder holds a copy of the main outputs from the full run.
 
 MMRDR's colour fundus photographs come from the DDR dataset (Li et al., 2019), which has no patient identifiers, so the official split is by photograph and not by patient. Step 2 measured copies of the same photograph. It cannot detect a new photograph of the same eye or the patient's other eye.
 
-From DDR's average of 1.42 photographs per patient, an estimated 30% to 48% of test photographs may share a patient with training. Test scores may therefore be higher than they would be on new patients.
+Without patient identifiers, overlap between training and test patients cannot be measured. Test scores may therefore overestimate performance on new patients.
 
 ## Acknowledgements and licences
 
